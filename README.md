@@ -1,28 +1,29 @@
 
 # Table of Contents
 
-1.  [About](#org7ed904a)
-2.  [License](#orgb655e87)
-3.  [Design Ideas](#orgfe70b78)
-    1.  [MVP](#org8bcea49)
-    2.  [More Complex Examples](#orgcc0caf9)
-    3.  [stdlib](#org656d2ce)
-4.  [Resources](#org94bc9c7)
-5.  [Things To Research](#org877be74)
-    1.  [Rust calling convention](#org476921f)
-    2.  [Basic Data Type Conversion](#orgab157be)
-        1.  [How about the stdlib?](#org7dc69f4)
-    3.  [Rust Metadata](#orgd717456)
-        1.  [How to programmatically inspect crates](#orgdd78aa7)
-        2.  [How to find public API of a crate?](#orgfc95ffe)
-    4.  [Rust generics](#org0c6df03)
-        1.  [How do they work?](#org2c71446)
-        2.  [Can they work with Common Lisp objects?](#orgb6fb03d)
-    5.  [Callbacks](#orgc85b914)
-    6.  [TODO:](#orgc85fd6d)
+1.  [About](#orgefea846)
+2.  [Why?](#orgf08e16c)
+3.  [License](#org3388864)
+4.  [Design Ideas](#org8f0c3d5)
+    1.  [MVP](#orgb6746ff)
+    2.  [More Complex Examples](#org9eb4ff3)
+    3.  [stdlib](#org2ceaab5)
+5.  [Resources](#org9e35b18)
+6.  [Things To Research](#org9d66d2f)
+    1.  [Rust calling convention](#org5478e77)
+    2.  [Basic Data Type Conversion](#org83fed55)
+        1.  [How about the stdlib?](#orgf3d6cb8)
+    3.  [Rust Metadata](#orgaf470be)
+        1.  [How to programmatically inspect crates](#orgb78bc8b)
+        2.  [How to find public API of a crate?](#org90b9e25)
+    4.  [Rust generics](#org0e3f68f)
+        1.  [How do they work?](#org1277132)
+        2.  [Can they work with Common Lisp objects?](#org2007298)
+    5.  [Callbacks](#org7959cc7)
+    6.  [TODO:](#orgae9514e)
 
 
-<a id="org7ed904a"></a>
+<a id="orgefea846"></a>
 
 # About
 
@@ -34,7 +35,16 @@ I'm currently flushing out the API design, researching Rust and its implementati
 studying the CFFI to understand how this may work.
 
 
-<a id="orgb655e87"></a>
+<a id="orgf08e16c"></a>
+
+# Why?
+
+If Rust is going to replace C++ and C, it must be possible to use Rust from 3rd party languages,
+like Common Lisp and Python.  I think Common Lisp has enough flexibility to make working with Rust
+seamless.
+
+
+<a id="org3388864"></a>
 
 # License
 
@@ -43,14 +53,14 @@ ISC
 Copyright (c) 2024 Jeremiah LaRocco <jeremiah<sub>larocco</sub>@fastmail.com>
 
 
-<a id="orgfe70b78"></a>
+<a id="org8f0c3d5"></a>
 
 # Design Ideas
 
 The long term goal is to make using Rust from CL as transparent as possible.
 
 
-<a id="org8bcea49"></a>
+<a id="orgb6746ff"></a>
 
 ## MVP
 
@@ -63,7 +73,7 @@ The long term goal is to make using Rust from CL as transparent as possible.
     (format t "~a~%" (simple-lib:fibonacci 10))
 
 
-<a id="orgcc0caf9"></a>
+<a id="org9eb4ff3"></a>
 
 ## More Complex Examples
 
@@ -98,7 +108,7 @@ Note the integration with iterate.
         (format t "~a~%" elt)))
 
 
-<a id="org656d2ce"></a>
+<a id="org2ceaab5"></a>
 
 ## stdlib
 
@@ -142,92 +152,210 @@ In that case, HashMap might look something like this
              (format "~s : ~s~%" book review)))) 
 
 
-<a id="org94bc9c7"></a>
+<a id="org9e35b18"></a>
 
 # Resources
 
-<https://www.youtube.com/watch?v=MY5kYqWeV1Q>
-<https://docs.rs/abi_stable/latest/abi_stable/>
-<https://github.com/ZettaScaleLabs/stabby>
-<https://rust-lang.github.io/api-guidelines/about.html>
-<https://github.com/rust-lang/compiler-builtins>
-<https://github.com/rust-lang/rust/blob/master/library/std/src/collections/mod.rs>
-<https://github.com/johnthagen/min-sized-rust#optimize-libstd-with-build-std>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
-<a id="org877be74"></a>
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">ABI Info</td>
+<td class="org-left"><a href="https://www.youtube.com/watch?v=MY5kYqWeV1Q">https://www.youtube.com/watch?v=MY5kYqWeV1Q</a></td>
+</tr>
+
+<tr>
+<td class="org-left">A crate implementing a stable ABI</td>
+<td class="org-left"><a href="https://docs.rs/abi_stable/latest/abi_stable/">https://docs.rs/abi_stable/latest/abi_stable/</a></td>
+</tr>
+
+<tr>
+<td class="org-left">Another crate for a stable ABI</td>
+<td class="org-left"><a href="https://github.com/ZettaScaleLabs/stabby">https://github.com/ZettaScaleLabs/stabby</a></td>
+</tr>
+
+<tr>
+<td class="org-left">RFFI must support APIs following these</td>
+<td class="org-left"><a href="https://rust-lang.github.io/api-guidelines/about.html">https://rust-lang.github.io/api-guidelines/about.html</a></td>
+</tr>
+
+<tr>
+<td class="org-left">Info about collections</td>
+<td class="org-left"><a href="https://github.com/rust-lang/compiler-builtins">https://github.com/rust-lang/compiler-builtins</a></td>
+</tr>
+
+<tr>
+<td class="org-left">Minimizing size</td>
+<td class="org-left"><a href="https://github.com/johnthagen/min-sized-rust#optimize-libstd-with-build-std">https://github.com/johnthagen/min-sized-rust#optimize-libstd-with-build-std</a></td>
+</tr>
+
+<tr>
+<td class="org-left">Rust + libc (why not vDSO or syscall ?)</td>
+<td class="org-left"><a href="https://users.rust-lang.org/t/clarifications-on-rusts-relationship-to-libc/56767">https://users.rust-lang.org/t/clarifications-on-rusts-relationship-to-libc/56767</a></td>
+</tr>
+
+<tr>
+<td class="org-left">Just interesting</td>
+<td class="org-left"><a href="https://stackoverflow.com/questions/12806584/what-is-better-int-0x80-or-syscall-in-32-bit-code-on-linux">https://stackoverflow.com/questions/12806584/what-is-better-int-0x80-or-syscall-in-32-bit-code-on-linux</a></td>
+</tr>
+
+<tr>
+<td class="org-left">Just interesting</td>
+<td class="org-left"><a href="https://github.com/rust-lang/rust/blob/master/library/std/src/collections/mod.rs">https://github.com/rust-lang/rust/blob/master/library/std/src/collections/mod.rs</a></td>
+</tr>
+
+<tr>
+<td class="org-left">Rust "Core" library details</td>
+<td class="org-left"><a href="https://doc.rust-lang.org/core/">https://doc.rust-lang.org/core/</a></td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+
+<a id="org9d66d2f"></a>
 
 # Things To Research
 
 
-<a id="org476921f"></a>
+<a id="org5478e77"></a>
 
 ## Rust calling convention
 
 
-<a id="orgab157be"></a>
+<a id="org83fed55"></a>
 
 ## Basic Data Type Conversion
 
-f32 -> single-float
-f64 -> double-float
-i64 -> fixnum or (signed-byte 64)
-u64 -> integer or (usigned-byte 64)
-i32 -> fixnum or (signed-byte 32)
-u32 -> fixnum or (signed-byte 32)
-string -> string
-array -> array (or list?)
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
-<a id="org7dc69f4"></a>
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">f32</td>
+<td class="org-left">single-float</td>
+</tr>
+
+<tr>
+<td class="org-left">f64</td>
+<td class="org-left">double-float</td>
+</tr>
+
+<tr>
+<td class="org-left">i64</td>
+<td class="org-left">fixnum or (signed-byte 64)</td>
+</tr>
+
+<tr>
+<td class="org-left">u64</td>
+<td class="org-left">integer or (usigned-byte 64)</td>
+</tr>
+
+<tr>
+<td class="org-left">i32</td>
+<td class="org-left">fixnum or (signed-byte 32)</td>
+</tr>
+
+<tr>
+<td class="org-left">u32</td>
+<td class="org-left">fixnum or (signed-byte 32)</td>
+</tr>
+
+<tr>
+<td class="org-left">string</td>
+<td class="org-left">string</td>
+</tr>
+
+<tr>
+<td class="org-left">array</td>
+<td class="org-left">array (or list?)</td>
+</tr>
+</tbody>
+</table>
+
+
+<a id="orgf3d6cb8"></a>
 
 ### How about the stdlib?
 
 These conversions should be possible and easy to do, but I don't think it makes sense to do them automatically.
 
-Vec -> array
-hashmap -> hashtable
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
-<a id="orgd717456"></a>
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Vec</td>
+<td class="org-left">array</td>
+</tr>
+
+<tr>
+<td class="org-left">hashmap</td>
+<td class="org-left">hashtable</td>
+</tr>
+</tbody>
+</table>
+
+
+<a id="orgaf470be"></a>
 
 ## Rust Metadata
 
 
-<a id="orgdd78aa7"></a>
+<a id="orgb78bc8b"></a>
 
 ### How to programmatically inspect crates
 
     cargo metadata [<crate name>]
 
 
-<a id="orgfc95ffe"></a>
+<a id="org90b9e25"></a>
 
 ### How to find public API of a crate?
 
 Read .rlib file somehow? 
 
 
-<a id="org0c6df03"></a>
+<a id="org0e3f68f"></a>
 
 ## Rust generics
 
 
-<a id="org2c71446"></a>
+<a id="org1277132"></a>
 
 ### How do they work?
 
 Are they like C++ templates - effectively compile-time code generation?
 
 
-<a id="orgb6fb03d"></a>
+<a id="org2007298"></a>
 
 ### Can they work with Common Lisp objects?
 
 Can there be a Rust wrapper around CL objects?
 
 
-<a id="orgc85b914"></a>
+<a id="org7959cc7"></a>
 
 ## Callbacks
 
@@ -235,7 +363,7 @@ Is it possible to pass Lisp functions into Rust?
 Is it possible to pass Rust functions into Lisp?
 
 
-<a id="orgc85fd6d"></a>
+<a id="orgae9514e"></a>
 
 ## TODO:
 
