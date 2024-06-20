@@ -6,6 +6,11 @@ Right now it's in a very early stage, and has no working code.
 I'm currently flushing out the API design, researching Rust and its implementation, and
 studying the CFFI to understand how this may work.
 
+* Why?
+
+If Rust is going to replace C++ and C, it must be possible to use Rust from 3rd party languages,
+like Common Lisp and Python.  I think Common Lisp has enough flexibility to make working with Rust
+seamless.
 
 * License
 ISC
@@ -106,33 +111,37 @@ https://doc.rust-lang.org/std/collections/struct.HashMap.html
 
 
 * Resources
-https://www.youtube.com/watch?v=MY5kYqWeV1Q
-https://docs.rs/abi_stable/latest/abi_stable/
-https://github.com/ZettaScaleLabs/stabby
-https://rust-lang.github.io/api-guidelines/about.html
-https://github.com/rust-lang/compiler-builtins
-https://github.com/rust-lang/rust/blob/master/library/std/src/collections/mod.rs
-https://github.com/johnthagen/min-sized-rust#optimize-libstd-with-build-std
+| ABI Info                                | https://www.youtube.com/watch?v=MY5kYqWeV1Q                                                             |
+| A crate implementing a stable ABI       | https://docs.rs/abi_stable/latest/abi_stable/                                                           |
+| Another crate for a stable ABI          | https://github.com/ZettaScaleLabs/stabby                                                                |
+| RFFI must support APIs following these  | https://rust-lang.github.io/api-guidelines/about.html                                                   |
+| Info about collections                  | https://github.com/rust-lang/compiler-builtins                                                          |
+| Minimizing size                         | https://github.com/johnthagen/min-sized-rust#optimize-libstd-with-build-std                             |
+| Rust + libc (why not vDSO or syscall ?) | https://users.rust-lang.org/t/clarifications-on-rusts-relationship-to-libc/56767                        |
+| Just interesting                        | https://stackoverflow.com/questions/12806584/what-is-better-int-0x80-or-syscall-in-32-bit-code-on-linux |
+| Just interesting                        | https://github.com/rust-lang/rust/blob/master/library/std/src/collections/mod.rs                        |
+| Rust "Core" library details             | https://doc.rust-lang.org/core/                                                                         |
+|                                         |                                                                                                         |
 
 * Things To Research
 
 ** Rust calling convention
 
 ** Basic Data Type Conversion
-f32 -> single-float
-f64 -> double-float
-i64 -> fixnum or (signed-byte 64)
-u64 -> integer or (usigned-byte 64)
-i32 -> fixnum or (signed-byte 32)
-u32 -> fixnum or (signed-byte 32)
-string -> string
-array -> array (or list?)
+| f32    | single-float                 |
+| f64    | double-float                 |
+| i64    | fixnum or (signed-byte 64)   |
+| u64    | integer or (usigned-byte 64) |
+| i32    | fixnum or (signed-byte 32)   |
+| u32    | fixnum or (signed-byte 32)   |
+| string | string                       |
+| array  | array (or list?)             |
 
 *** How about the stdlib?
 These conversions should be possible and easy to do, but I don't think it makes sense to do them automatically.
 
-Vec -> array
-hashmap -> hashtable
+| Vec     | array     |
+| hashmap | hashtable |
 
 ** Rust Metadata
 
