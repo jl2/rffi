@@ -115,11 +115,11 @@ https://doc.rust-lang.org/std/collections/struct.HashMap.html
 | A crate implementing a stable ABI       | https://docs.rs/abi_stable/latest/abi_stable/                                                           |
 | Another crate for a stable ABI          | https://github.com/ZettaScaleLabs/stabby                                                                |
 | RFFI must support APIs following these  | https://rust-lang.github.io/api-guidelines/about.html                                                   |
-| Info about collections                  | https://github.com/rust-lang/compiler-builtins                                                          |
+| Info about collections                  | https://github.com/rust-lang/rust/blob/master/library/std/src/collections/mod.rs                        |
 | Minimizing size                         | https://github.com/johnthagen/min-sized-rust#optimize-libstd-with-build-std                             |
 | Rust + libc (why not vDSO or syscall ?) | https://users.rust-lang.org/t/clarifications-on-rusts-relationship-to-libc/56767                        |
 | Just interesting                        | https://stackoverflow.com/questions/12806584/what-is-better-int-0x80-or-syscall-in-32-bit-code-on-linux |
-| Just interesting                        | https://github.com/rust-lang/rust/blob/master/library/std/src/collections/mod.rs                        |
+| Just interesting                        | https://github.com/rust-lang/compiler-builtins                                                          |
 | Rust "Core" library details             | https://doc.rust-lang.org/core/                                                                         |
 |                                         |                                                                                                         |
 
