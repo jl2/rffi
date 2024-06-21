@@ -6,10 +6,12 @@ Right now it's in a very early stage, and has no working code.
 I'm currently flushing out the API design, researching Rust and its implementation, and
 studying the CFFI to understand how this may work.
 
+
 * Why?
 
 If Rust is going to replace C++ and C, it must be possible to use Rust from 3rd party languages,
-like Common Lisp and Python.  I think Common Lisp has enough flexibility to make working with Rust
+like Common Lisp and Python.  My goal is to avoid using C or C++ as an intermediate language, and
+I think Common Lisp has enough flexibility to make working with Rust
 seamless.
 
 * License
