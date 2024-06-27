@@ -123,6 +123,7 @@ https://doc.rust-lang.org/std/collections/struct.HashMap.html
 | Just interesting                        | https://stackoverflow.com/questions/12806584/what-is-better-int-0x80-or-syscall-in-32-bit-code-on-linux |
 | Just interesting                        | https://github.com/rust-lang/compiler-builtins                                                          |
 | Rust "Core" library details             | https://doc.rust-lang.org/core/                                                                         |
+| Rust in Linux                           | https://github.com/torvalds/linux/tree/master/rust                                                      |
 |                                         |                                                                                                         |
 
 * Things To Research
