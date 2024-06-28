@@ -68,6 +68,26 @@ Note the integration with iterate.
 
 #+end_src
 
+** Common Lisp -> Rust -> C
+A Rust crate that use CFFI bindings to a C library.
+
+How would this compare to a Common Lisp -> C binding with autowrap?
+
+How about a CFFI binding created by hand?
+
+If CL -> Rust can be done without overhead, CL -> Rust -> C seems better than CL -> C with autowrap, at least for RE2.
+
+** RE2
+#+begin_src lisp
+  (ql:quickload '(:rffi :iterate))
+  (use-package :iterate)
+
+  (rffi:use-crate "re2::RE2")
+  (let* ((r (RE2:parse "a(.+)f"))
+         (m (RE2:full-match-capturing "asdf")))
+    (assert (string= m "sd")))
+#+end_src
+
 ** stdlib
 The stdlib should also be usable, but AFAICT, it's not a crate.
 
