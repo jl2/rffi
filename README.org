@@ -78,6 +78,8 @@ How about a CFFI binding created by hand?
 If CL -> Rust can be done without overhead, CL -> Rust -> C seems better than CL -> C with autowrap, at least for RE2.
 
 ** RE2
+https://docs.rs/re2/latest/re2/
+
 #+begin_src lisp
   (ql:quickload '(:rffi :iterate))
   (use-package :iterate)
@@ -87,6 +89,25 @@ If CL -> Rust can be done without overhead, CL -> Rust -> C seems better than CL
          (m (RE2:full-match-capturing "asdf")))
     (assert (string= m "sd")))
 #+end_src
+
+** tokio
+Can this work?
+https://tokio.rs/tokio/tutorial/hello-tokio
+
+#+begin_src lisp
+  (ql:quickload '(:rffi :iterate))
+  (use-package :iterate)
+
+  (rffi:use-crate "tokio")
+  (rffi:use-crate "mini_redis")
+  (tokio:defmain ()
+      (let ((client (tokio:await? (mini-redis:connect "127.0.0.1:6379"))))
+        (tokio:await? (mini-redis:set client "hello" (mini-redis:into "world")))
+        (let ((result (tokio:await? (mini-redis:get client "hello"))))
+          (format t "got value from server; result: ~a~%" result)
+          (assert (string= result "world")))))
+#+end_src
+
 
 ** stdlib
 The stdlib should also be usable, but AFAICT, it's not a crate.
@@ -146,6 +167,7 @@ https://doc.rust-lang.org/std/collections/struct.HashMap.html
 | Rust "Core" library details             | https://doc.rust-lang.org/core/                                                                         |                                                                                     |
 | Rust in Linux                           | https://github.com/torvalds/linux/tree/master/rust                                                      | Interesting to read some of the comments here and see the approach taken on things. |
 | Rust in Linux                           | [[~/oss_src/linux/rust/]]                                                                                   |                                                                                     |
+|                                         |                                                                                                         |                                                                                     |
 
 
 
