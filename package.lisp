@@ -17,5 +17,8 @@
 
   (:nicknames)
 
-  (:use #:cl #:alexandria)
-  (:export #:main #:decode-symbol))
+  (:use #:cl
+        #:alexandria)
+
+  (:export #:use-crate
+           #:decode-symbol))

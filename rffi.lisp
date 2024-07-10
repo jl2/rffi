@@ -15,3 +15,29 @@
 
 (in-package :rffi)
 
+(defclass crate-version ()
+  ())
+
+(defclass rust-function ()
+  ())
+
+(defclass rust-datatype ()
+  ())
+
+
+(defclass crate ()
+  ((descriptor :type string :initarg :crate-descriptor)
+   (version :type crate-version)
+   (path :type path))
+  (:documentation "Metadata about a crate."))
+
+(defun find-crate (crate-descriptor)
+  ;; TODO: Use cargo to find the crate metadata
+  (make-instance 'crate
+                 :crate-descriptor crate-descriptor)
+  )
+
+(defmacro use-crate (crate-descriptor)
+  (let ((crate (find-crate crate-descriptor)))
+    ;; TODO: Use the crate to generate a package...
+    crate))
