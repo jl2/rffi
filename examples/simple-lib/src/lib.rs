@@ -15,16 +15,16 @@ mod tests {
         assert_eq!(result2, 2);
 
         let result3 = fibonacci(3);
-        assert_eq!(result3, 2);
+        assert_eq!(result3, 3);
 
         let result4 = fibonacci(4);
-        assert_eq!(result4, 3);
+        assert_eq!(result4, 5);
 
         let result5 = fibonacci(5);
-        assert_eq!(result5, 5);
+        assert_eq!(result5, 8);
 
         let result6 = fibonacci(6);
-        assert_eq!(result6, 8);
+        assert_eq!(result6, 13);
     }
     
 }
