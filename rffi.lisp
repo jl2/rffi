@@ -31,13 +31,14 @@
    (path :type path))
   (:documentation "Metadata about a crate."))
 
-(defun find-crate (crate-descriptor)
+(defun find-module (descriptor)
   ;; TODO: Use cargo to find the crate metadata
+  ;; TODO: This isn't even (necessarily) a crate now...
   (make-instance 'crate
-                 :crate-descriptor crate-descriptor)
+                 :crate-descriptor descriptor)
   )
 
-(defmacro use-crate (crate-descriptor)
-  (let ((crate (find-crate crate-descriptor)))
+(defmacro use (descriptor)
+  (let ((crate (find-module descriptor)))
     ;; TODO: Use the crate to generate a package...
     crate))

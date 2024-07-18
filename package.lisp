@@ -21,4 +21,4 @@
         #:alexandria)
 
   (:export #:use-crate
-           #:decode-symbol))
+           #:demangle-identifier))
